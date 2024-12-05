@@ -1,0 +1,13 @@
+services:
+  elixir-dev:
+    user: developer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"
+    volumes:
+      - type: bind
+        source: .
+        target: /workspace
+    working_dir: /workspace
+    command: sleep infinity
