@@ -1,10 +1,10 @@
 defmodule Tetris.Brick do
 
   defstruct [
-    name:        :l     ,
-    location:    {0, 0} ,
-    rotation:    0      ,
-    reflection:  false  ,
+    name:        :l      ,
+    location:    {40, 0} ,
+    rotation:    0       ,
+    reflection:  false   ,
   ]
 
   def new() do
@@ -12,18 +12,35 @@ defmodule Tetris.Brick do
   end
 
   def new_random() do
-    %Tetris.Brick{
+    %{ new() | 
       name:        random_name()       ,
-      location:    {40, 0}             ,
       rotation:    random_rotation()   ,
       reflection:  random_reflection() ,
     }
+    
   end
+
+  def move_left(brick), do: %{ brick | location: point_left(brick.location) }
+
+  def move_right(brick), do: %{ brick | location: point_right(brick.location) }
+
+  def move_down(brick), do: %{ brick | location: point_down(brick.location) }
+  
+  def spin_90(brick), do: %{ brick | rotation: rotate(brick.rotation) }
 
   defp random_name(), do: ~w(z l t o i)a |> Enum.random()
 
   defp random_rotation(), do: [0, 90, 180, 270] |> Enum.random()
 
   defp random_reflection(), do: [true, false] |> Enum.random()
+
+  defp point_left({ x, y }), do: { x-1, y }
+
+  defp point_right({ x, y }), do: { x + 1, y }
+
+  defp point_down({ x, y}), do: { x, y + 1 }
+
+  defp rotate(270), do: 0
+  defp rotate(degrees), do: degrees + 90
 
 end
