@@ -7,8 +7,8 @@ defmodule Tetris.Brick do
     reflection:  false   ,
   ]
 
-  def new() do
-    __struct__()
+  def new(attributes \\ []) do
+    __struct__(attributes)
   end
 
   def new_random() do
@@ -41,7 +41,7 @@ defmodule Tetris.Brick do
     [
       {2, 1},
       {2, 2},
-      {2, 3}
+      {2, 3},
       {2, 4}
     ]
   end
@@ -61,7 +61,7 @@ defmodule Tetris.Brick do
     ]
   end
 
-  def points(%{name: :z}) do
+  def points(%{name: :t}) do
     [
       {2, 2},
       {2, 3}, {3, 3},

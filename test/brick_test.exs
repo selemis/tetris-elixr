@@ -29,6 +29,21 @@ defmodule BrickTest do
   end
 
 
+  test "points for shape o" do
 
-  defp new_brick(), do: new()
+    points =
+      new_brick(name: :o)
+      |> points()
+
+    assert {2, 2} in points
+    assert {2, 3} in points
+    assert {3, 2} in points
+    assert {3, 3} in points
+    assert {1, 1} not in points
+
+  end
+
+
+
+  defp new_brick(attributes \\ []), do: new(attributes)
 end
