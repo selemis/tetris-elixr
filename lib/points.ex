@@ -16,8 +16,8 @@ defmodule Tetris.Points do
 
   defp transpose_point({x, y}), do: {y, x}
 
-  defp mirror_point_on_y({x, y}), do: {4 - x, y}
+  defp mirror_point_on_y({x, y}), do: {5 - x, y}
 
-  defp mirror_point_on_x({x, y}), do: {x, 4 - y}
+  defp mirror_point_on_x({x, y}), do: {x, 5 - y}
 
 end
