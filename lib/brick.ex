@@ -12,12 +12,12 @@ defmodule Tetris.Brick do
   end
 
   def new_random() do
-    %{ new() | 
+    %{ new() |
       name:        random_name()       ,
       rotation:    random_rotation()   ,
       reflection:  random_reflection() ,
     }
-    
+
   end
 
   def move_left(brick), do: %{ brick | location: point_left(brick.location) }
@@ -25,8 +25,49 @@ defmodule Tetris.Brick do
   def move_right(brick), do: %{ brick | location: point_right(brick.location) }
 
   def move_down(brick), do: %{ brick | location: point_down(brick.location) }
-  
+
   def spin_90(brick), do: %{ brick | rotation: rotate(brick.rotation) }
+
+
+  def points(%{name: :l}) do
+    [
+      {2, 1},
+      {2, 2},
+      {2, 3}, {3, 3}
+    ]
+  end
+
+  def points(%{name: :i}) do
+    [
+      {2, 1},
+      {2, 2},
+      {2, 3}
+      {2, 4}
+    ]
+  end
+
+  def points(%{name: :o}) do
+    [
+      {2, 2}, {3, 2},
+      {2, 3}, {3, 3}
+    ]
+  end
+
+  def points(%{name: :z}) do
+    [
+      {2, 2},
+      {2, 3}, {3, 3},
+              {3, 4}
+    ]
+  end
+
+  def points(%{name: :z}) do
+    [
+      {2, 2},
+      {2, 3}, {3, 3},
+      {2, 4}
+    ]
+  end
 
   defp random_name(), do: ~w(z l t o i)a |> Enum.random()
 

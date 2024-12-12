@@ -16,18 +16,18 @@ defmodule BrickTest do
   end
 
   test "movement" do
-    actual = 
+    actual =
       new_brick()
         |> move_left()
         |> move_left()
         |> move_down()
         |> spin_90()
         |> spin_90()
-      
 
     assert actual.location == { 38, 1 }
     assert actual.rotation == 180
   end
+
 
 
   defp new_brick(), do: new()
