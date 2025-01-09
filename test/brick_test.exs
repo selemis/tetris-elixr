@@ -28,7 +28,6 @@ defmodule BrickTest do
     assert actual.rotation == 180
   end
 
-
   test "points for shape o" do
 
     points =
@@ -43,7 +42,6 @@ defmodule BrickTest do
 
   end
 
-
-
   defp new_brick(attributes \\ []), do: new(attributes)
+
 end

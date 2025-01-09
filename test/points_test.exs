@@ -6,7 +6,6 @@ defmodule PointsTest do
   alias Tetris.Brick
 
   test "move points by {x, y}" do
-
     points =
       Brick.new(name: :l)
         |> Brick.points()
@@ -19,4 +18,20 @@ defmodule PointsTest do
     assert {2, 1} not in points
   end
 
+  test "points transformations" do
+    [{1, 1}]
+      |> mirror_on_y()
+      |> assert_point({4, 1})
+      |> mirror_on_x()
+      |> assert_point({4, 4})
+      |> rotate_90()
+      |> assert_point({1, 4})
+      |> rotate_90()
+      |> assert_point({1, 1})
+  end
+
+  defp assert_point([actual], expected) do
+    assert actual == expected
+    [actual]
+  end
 end
