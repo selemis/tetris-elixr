@@ -1,5 +1,7 @@
 defmodule Tetris.Brick do
 
+  alias Tetris.Points
+
   defstruct [
     name:        :l      ,
     location:    {40, 0} ,
@@ -27,7 +29,6 @@ defmodule Tetris.Brick do
   def move_down(brick), do: %{ brick | location: point_down(brick.location) }
 
   def spin_90(brick), do: %{ brick | rotation: rotate(brick.rotation) }
-
 
   def points(%{name: :l}) do
     [
@@ -67,6 +68,25 @@ defmodule Tetris.Brick do
       {2, 3}, {3, 3},
       {2, 4}
     ]
+  end
+
+  def shape(brick) do
+    brick
+      |> points
+      |> Points.rotate_90(brick.rotation)
+      |> Points.mirror_on_y(brick.reflection)
+  end
+
+  def to_string(brick) do
+    brick
+      |> shape()
+      |> Points.to_string()
+  end
+
+  def print(brick) do
+    brick
+      |> shape()
+      |> Points.print()
   end
 
   defp random_name(), do: ~w(z l t o i)a |> Enum.random()
